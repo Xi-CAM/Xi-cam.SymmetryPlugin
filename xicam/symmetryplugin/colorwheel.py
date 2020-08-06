@@ -5,6 +5,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from .utils import get_test_data_file
+
 
 def build_color_wheel(nx, ny, sym):
     im = Image.new("RGB", (nx, ny))
@@ -74,8 +76,7 @@ def create_sym(img_all, order):
 
 def fake_create_sym(img_all, order):
     # TODO: remove hard code path
-    symmetry_dir = Path(__file__).parent
-    img = np.array(Image.open(Path(symmetry_dir, "tau.png")))
+    img = np.array(Image.open(Path(get_test_data_file("seo.tif"))))
     (nx, ny) = img.shape
     whl = build_color_wheel(ny, nx, order)
     # whl = colorrange(whl,180, 50)
